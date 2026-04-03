@@ -87,6 +87,69 @@ int main()
 void moveOddItemsToBack(LinkedList *ll)
 {
 	/* add your code here */
+
+	ListNode *odd = malloc(sizeof(ListNode));
+	ListNode *even= malloc(sizeof(ListNode));
+	odd->next = NULL;
+	even->next = NULL;
+	ListNode *cur = ll->head;
+	ListNode *even_head = even;
+	ListNode *odd_head = odd;
+	while (cur != NULL){
+		ListNode *next = cur->next;
+		if (cur->item % 2){
+			odd->next = cur;
+			odd = odd->next;
+			odd->next = NULL;
+		}
+		else{
+			even->next = cur;
+			even = even->next;
+			even->next = NULL;
+		}
+		cur = next;
+	}
+	if(even_head->next == NULL)
+		ll->head = odd_head->next;
+	else{
+		ll->head = even_head->next;
+		even->next = odd_head->next;
+	}
+	free(odd_head);
+	free(even_head);
+
+	
+
+
+	// ListNode *evenHead = NULL, *evenTail = NULL;
+    // ListNode *oddHead  = NULL, *oddTail  = NULL;
+    // ListNode *cur = ll->head;
+
+    // while (cur != NULL) {
+    //     ListNode *next = cur->next;
+    //     cur->next = NULL;
+
+    //     if (cur->item % 2) {
+    //         if (!oddHead) oddHead = oddTail = cur;
+    //         else { oddTail->next = cur; oddTail = cur; }
+    //     } else {
+    //         if (!evenHead) evenHead = evenTail = cur;
+    //         else { evenTail->next = cur; evenTail = cur; }
+    //     }
+
+    //     cur = next;
+    // }
+
+    // if (!evenHead)
+    //     ll->head = oddHead;
+    // else {
+    //     evenTail->next = oddHead;
+    //     ll->head = evenHead;
+    // }
+
+
+
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
