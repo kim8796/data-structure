@@ -104,6 +104,32 @@ int main()
 int isStackPairwiseConsecutive(Stack *s)
 {
   /* add your code here */
+	int i,prev,cur,suc=1, size = s->ll.size;
+	Stack *c = malloc(sizeof(Stack));
+	c->ll.head = NULL;
+	c->ll.size = 0;
+	c->ll.tail = NULL;
+	if (size < 1 || size%2 != 0 ){
+		free(c);
+		return 0;
+	}
+  
+	for(i=0;i<size/2;i++){
+		prev = pop(s);
+		cur = pop(s);
+		push(c,prev);
+		push(c,cur);
+		if(abs(prev-cur) != 1) {
+			suc = 0;
+			break;
+		}
+	}
+	size = c->ll.size;
+	for(i=0;i<size;i++){
+		push(s,pop(c));
+	}
+	free(c);
+  return suc;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
