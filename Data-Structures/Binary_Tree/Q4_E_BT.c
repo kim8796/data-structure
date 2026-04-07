@@ -104,6 +104,16 @@ int sumOfOddNodes(BTNode *node)
 
 {
     /* add your code here */
+    if (node == NULL){
+        return 0;
+    }
+    int odd = 0;
+    if (node->item %2 != 0){
+        odd = node->item;
+    }
+    
+    return sumOfOddNodes(node->left)+odd+sumOfOddNodes(node->right);
+    
 }
 
 //////////////////////////////////////////////////////////////////////////////////
